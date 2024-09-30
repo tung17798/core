@@ -2,35 +2,31 @@ rootProject.name = "Core"
 
 include ':app'
 
-include ':constant'
-
 include ':core'
-include ':core:base'
-include ':core:android'
+include ':core-app'
+include ':core-ads'
+include ':core-review'
+include ':core-update'
+include ':core-navigation'
 
-include ':library'
-include ':library:job'
-include ':library:task'
-include ':library:state'
-include ':library:image'
-include ':library:adapter'
-include ':library:binding'
+include ':translate'
+include ':translate-mlkit'
 
-include ':library:config'
-include ':library:config-firebase'
+include ':detect'
+include ':detect-mlkit'
 
-include ':library:analytics'
-include ':library:analytics-log'
-include ':library:analytics-sentry'
-include ':library:analytics-firebase'
+include ':word'
 
-include ':library:crashlytics'
-include ':library:crashlytics-log'
-include ':library:crashlytics-sentry'
-include ':library:crashlytics-firebase'
+include ':task'
 
-include ':library:detect'
-include ':library:detect-mlkit'
+include ':state'
 
-include ':library:translate'
-include ':library:translate-mlkit'
+include ':config-firebase'
+
+include ':adapter'
+
+include ':analytics'
+include ':analytics-firebase'
+
+include ':crashlytics'
+include ':crashlytics-firebase'
