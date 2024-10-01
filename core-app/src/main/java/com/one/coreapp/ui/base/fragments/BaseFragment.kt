@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.one.coreapp.R
+import com.one.coreapp.ui.ComponentCache
 import com.one.coreapp.ui.base.activities.BaseActivity
 import com.one.coreapp.utils.AppException
 import com.one.coreapp.utils.extentions.getColorFromAttr
@@ -15,10 +16,12 @@ import com.one.coreapp.utils.extentions.navigateUp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import java.io.IOException
-import java.util.*
+import java.util.UUID
 import java.util.concurrent.CopyOnWriteArrayList
 
-open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId), BackPressedView {
+open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId), BackPressedView, ComponentCache {
+
+    override val mBagOfTags: HashMap<String, Any> = hashMapOf()
 
     private val confirmDialogList: CopyOnWriteArrayList<AlertDialog> = CopyOnWriteArrayList<AlertDialog>()
 
@@ -35,6 +38,11 @@ open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentL
         for (confirmDialog in confirmDialogList) {
             if (confirmDialog != null && confirmDialog.isShowing) confirmDialog.dismiss()
         }
+    }
+
+    open fun dismiss() {
+        
+        (parentFragment?.childFragmentManager ?: activity?.supportFragmentManager)?.popBackStack()
     }
 
     @CallSuper
